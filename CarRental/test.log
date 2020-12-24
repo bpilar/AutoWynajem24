@@ -1,0 +1,434 @@
+<object-stream>
+<org.drools.core.audit.WorkingMemoryLog>
+  <version>6.1</version>
+  <events>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>Init [0]</activationId>
+      <rule>Init</rule>
+      <declarations></declarations>
+      <factHandleIds>0</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>Init [0]</activationId>
+      <rule>Init</rule>
+      <declarations></declarations>
+      <factHandleIds>0</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>1</factId>
+      <objectToString>logic.Category@7a344b65</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>2</factId>
+      <objectToString>logic.Category@57aa341b</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>3</factId>
+      <objectToString>logic.Category@26e412ef</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>4</factId>
+      <objectToString>logic.Car@4ae263bf</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>5</factId>
+      <objectToString>logic.Car@7103ab0</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>6</factId>
+      <objectToString>logic.Car@19ccca5</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>7</factId>
+      <objectToString>logic.Car@769d513</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>8</factId>
+      <objectToString>logic.Car@5e4fa1da</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>9</factId>
+      <objectToString>logic.Client@588cd519</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>10</factId>
+      <objectToString>logic.Client@3f92c349</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>11</factId>
+      <objectToString>logic.Client@769a58e5</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>12</factId>
+      <objectToString>logic.Reservation@7c6442c2</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>13</factId>
+      <objectToString>logic.Reservation@2d746ce4</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>14</factId>
+      <objectToString>logic.Reservation@5dbf5634</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>15</factId>
+      <objectToString>logic.Reservation@1948ea69</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>16</factId>
+      <objectToString>logic.Return@47e4d9d0</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>17</factId>
+      <objectToString>logic.Return@49798e84</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>18</factId>
+      <objectToString>logic.Return@6ed06f69</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>19</factId>
+      <objectToString>logic.Return@3015db78</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>Init [0]</activationId>
+      <rule>Init</rule>
+      <declarations></declarations>
+      <factHandleIds>0</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>process5 [13, 2, 10, 6]</activationId>
+      <rule>process5</rule>
+      <declarations>res=logic.Reservation@2d746ce4; cli=logic.Client@3f92c349; cliName=Klient2; car=logic.Car@19ccca5; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>13,2,10,6</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>process5 [13, 2, 10, 6]</activationId>
+      <rule>process5</rule>
+      <declarations>res=logic.Reservation@2d746ce4; cli=logic.Client@3f92c349; cliName=Klient2; car=logic.Car@19ccca5; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>13,2,10,6</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>13</factId>
+      <objectToString>logic.Reservation@2d746ce4</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>10</factId>
+      <objectToString>logic.Client@3f92c349</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>6</factId>
+      <objectToString>logic.Car@19ccca5</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>process5 [13, 2, 10, 6]</activationId>
+      <rule>process5</rule>
+      <declarations>res=logic.Reservation@2d746ce4; cli=logic.Client@3f92c349; cliName=Klient2; car=logic.Car@19ccca5; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>13,2,10,6</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>oneCarPerClient [14, 10]</activationId>
+      <rule>oneCarPerClient</rule>
+      <declarations>res=logic.Reservation@5dbf5634; cli=logic.Client@3f92c349</declarations>
+      <factHandleIds>10,14</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>oneCarPerClient [14, 10]</activationId>
+      <rule>oneCarPerClient</rule>
+      <declarations>res=logic.Reservation@5dbf5634; cli=logic.Client@3f92c349</declarations>
+      <factHandleIds>10,14</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>3</type>
+      <factId>14</factId>
+      <objectToString>logic.Reservation@5dbf5634</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>oneCarPerClient [14, 10]</activationId>
+      <rule>oneCarPerClient</rule>
+      <declarations>cli=logic.Client@3f92c349</declarations>
+      <factHandleIds>10,14</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>emptyReturn [18]</activationId>
+      <rule>emptyReturn</rule>
+      <declarations>ret=logic.Return@6ed06f69</declarations>
+      <factHandleIds>14,18</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>emptyReturn [18]</activationId>
+      <rule>emptyReturn</rule>
+      <declarations>ret=logic.Return@6ed06f69</declarations>
+      <factHandleIds>14,18</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>3</type>
+      <factId>18</factId>
+      <objectToString>logic.Return@6ed06f69</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>emptyReturn [18]</activationId>
+      <rule>emptyReturn</rule>
+      <declarations></declarations>
+      <factHandleIds>14,18</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>process1 [12, 1, 9, 5]</activationId>
+      <rule>process1</rule>
+      <declarations>res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; cliName=Klient1; car=logic.Car@7103ab0; catName=A; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>13,12,1,9,5</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>process1 [12, 1, 9, 4]</activationId>
+      <rule>process1</rule>
+      <declarations>res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; cliName=Klient1; car=logic.Car@4ae263bf; catName=A; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>13,12,1,9,4</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>process1 [12, 1, 9, 5]</activationId>
+      <rule>process1</rule>
+      <declarations>res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; cliName=Klient1; car=logic.Car@7103ab0; catName=A; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>13,12,1,9,5</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>12</factId>
+      <objectToString>logic.Reservation@7c6442c2</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>9</factId>
+      <objectToString>logic.Client@588cd519</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>5</factId>
+      <objectToString>logic.Car@7103ab0</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>process1 [12, 1, 9, 5]</activationId>
+      <rule>process1</rule>
+      <declarations>res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; cliName=Klient1; car=logic.Car@7103ab0; catName=A; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>13,12,1,9,5</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>5</type>
+      <activationId>process1 [12, 1, 9, 4]</activationId>
+      <rule>process1</rule>
+      <declarations>res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; cliName=Klient1; car=logic.Car@4ae263bf; catName=A; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>4,12,1,9</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>process8 [15, 2, 11, 7]</activationId>
+      <rule>process8</rule>
+      <declarations>res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; cliName=Klient3; car=logic.Car@769d513; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>15,2,11,7</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>process8 [15, 2, 11, 8]</activationId>
+      <rule>process8</rule>
+      <declarations>res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; cliName=Klient3; car=logic.Car@5e4fa1da; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>15,2,11,8</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>process8 [15, 2, 11, 7]</activationId>
+      <rule>process8</rule>
+      <declarations>res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; cliName=Klient3; car=logic.Car@769d513; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>15,2,11,7</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>15</factId>
+      <objectToString>logic.Reservation@1948ea69</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>11</factId>
+      <objectToString>logic.Client@769a58e5</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>7</factId>
+      <objectToString>logic.Car@769d513</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>process8 [15, 2, 11, 7]</activationId>
+      <rule>process8</rule>
+      <declarations>res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; cliName=Klient3; car=logic.Car@769d513; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>15,2,11,7</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>5</type>
+      <activationId>process8 [15, 2, 11, 8]</activationId>
+      <rule>process8</rule>
+      <declarations>res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; cliName=Klient3; car=logic.Car@5e4fa1da; catName=B; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>8,15,2,11</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>return1 [16, 12, 5, 1, 9]</activationId>
+      <rule>return1</rule>
+      <declarations>ret=logic.Return@47e4d9d0; res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; car=logic.Car@7103ab0; resR=logic.Reservation@7c6442c2; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>9,16,12,5,1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>return1 [16, 12, 5, 1, 9]</activationId>
+      <rule>return1</rule>
+      <declarations>ret=logic.Return@47e4d9d0; res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; car=logic.Car@7103ab0; resR=logic.Reservation@7c6442c2; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>9,16,12,5,1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>16</factId>
+      <objectToString>logic.Return@47e4d9d0</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>12</factId>
+      <objectToString>logic.Reservation@7c6442c2</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>9</factId>
+      <objectToString>logic.Client@588cd519</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>5</factId>
+      <objectToString>logic.Car@7103ab0</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>return1 [16, 12, 5, 1, 9]</activationId>
+      <rule>return1</rule>
+      <declarations>ret=logic.Return@47e4d9d0; res=logic.Reservation@7c6442c2; cli=logic.Client@588cd519; car=logic.Car@7103ab0; resR=logic.Reservation@7c6442c2; cat=logic.Category@7a344b65</declarations>
+      <factHandleIds>9,16,12,5,1</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>return2 [19, 15, 7, 2, 11]</activationId>
+      <rule>return2</rule>
+      <declarations>ret=logic.Return@3015db78; res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; car=logic.Car@769d513; resR=logic.Reservation@1948ea69; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>11,19,15,7,2</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>return2 [17, 13, 6, 2, 10]</activationId>
+      <rule>return2</rule>
+      <declarations>ret=logic.Return@49798e84; res=logic.Reservation@2d746ce4; cli=logic.Client@3f92c349; car=logic.Car@19ccca5; resR=logic.Reservation@2d746ce4; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>10,17,13,6,2</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>return2 [19, 15, 7, 2, 11]</activationId>
+      <rule>return2</rule>
+      <declarations>ret=logic.Return@3015db78; res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; car=logic.Car@769d513; resR=logic.Reservation@1948ea69; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>11,19,15,7,2</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>19</factId>
+      <objectToString>logic.Return@3015db78</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>15</factId>
+      <objectToString>logic.Reservation@1948ea69</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>11</factId>
+      <objectToString>logic.Client@769a58e5</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>7</factId>
+      <objectToString>logic.Car@769d513</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>return2 [19, 15, 7, 2, 11]</activationId>
+      <rule>return2</rule>
+      <declarations>ret=logic.Return@3015db78; res=logic.Reservation@1948ea69; cli=logic.Client@769a58e5; car=logic.Car@769d513; resR=logic.Reservation@1948ea69; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>11,19,15,7,2</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>return2 [17, 13, 6, 2, 10]</activationId>
+      <rule>return2</rule>
+      <declarations>ret=logic.Return@49798e84; res=logic.Reservation@2d746ce4; cli=logic.Client@3f92c349; car=logic.Car@19ccca5; resR=logic.Reservation@2d746ce4; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>10,17,13,6,2</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>17</factId>
+      <objectToString>logic.Return@49798e84</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>13</factId>
+      <objectToString>logic.Reservation@2d746ce4</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>10</factId>
+      <objectToString>logic.Client@3f92c349</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>2</type>
+      <factId>6</factId>
+      <objectToString>logic.Car@19ccca5</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>return2 [17, 13, 6, 2, 10]</activationId>
+      <rule>return2</rule>
+      <declarations>ret=logic.Return@49798e84; res=logic.Reservation@2d746ce4; cli=logic.Client@3f92c349; car=logic.Car@19ccca5; resR=logic.Reservation@2d746ce4; cat=logic.Category@57aa341b</declarations>
+      <factHandleIds>10,17,13,6,2</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+  </events>
+</org.drools.core.audit.WorkingMemoryLog>
+</object-stream>

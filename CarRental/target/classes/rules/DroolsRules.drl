@@ -1,0 +1,444 @@
+package logic
+
+import logic.*;
+import logic.Car;
+import logic.Category;
+import logic.Client;
+import logic.Reservation;
+
+
+rule "Init"
+	when
+	then
+		//Category("<nazwa>", <cena do 3 dni>, <cena od 3 dni>, <cena fotelika/bagażnika na rowery>)
+		Category a = new Category("A", 69, 59, 10);
+		Category b = new Category("B", 79, 69, 10);
+		Category d = new Category("D", 89, 79, 10);
+		
+		insert(a);
+		insert(b);
+		insert(d);
+		
+		//Car("<kategoria>", "<nazwa>")
+		Car car1 = new Car(a.name,"Samochód 1");
+		Car car2 = new Car(a.name,"Samochód 2");
+		Car car3 = new Car(b.name,"Samochód 3");
+		Car car4 = new Car(d.name,"Samochód 4");
+		Car car5 = new Car(d.name,"Samochód 5");
+		
+		insert(car1);
+		insert(car2);
+		insert(car3);
+		insert(car4);
+		insert(car5);
+		
+		//Client("<nazwa>", <program lojalnościowy>)
+		Client k1 = new Client("Klient1", 1);
+		Client k2 = new Client("Klient2", 0);
+		Client k3 = new Client("Klient3", 0);
+		
+		insert(k1);
+		insert(k2);
+		insert(k3);
+		
+		//Reservation(["<kategoria>", ]"<nazwa>", "<data początku>", "<data końca>", <fotelik>, <bagażnik na rowery>)
+		Reservation r1 = new Reservation("Klient1", "11/11/2016", "12/11/2016", 1, 1);
+		Reservation r2 = new Reservation("B", "Klient2", "10/11/2016", "13/11/2016", 0, 1);
+		Reservation r3 = new Reservation("A", "Klient2", "11/11/2016", "14/11/2016", 0, 0);
+		Reservation r4 = new Reservation("B", "Klient3", "11/11/2016", "16/11/2016", 0, 0);
+		
+		insert(r1);
+		insert(r2);
+		insert(r3);
+		insert(r4);
+		
+		//Return(<rezerwacja>, <kilometry>, <data zwrotu>, <dokumanty>, <kołpak>)
+		Return ret1 = new Return(r1, 66, "12/11/2016", 0, 0);
+		Return ret2 = new Return(r2, 100, "13/11/2016", 0, 0);
+		Return ret3 = new Return(r3, 0, "14/11/2016", 0, 0);
+		Return ret4 = new Return(r4, 1000, "18/11/2016", 1, 2);
+		
+		insert(ret1);
+		insert(ret2);
+		insert(ret3);
+		insert(ret4);
+end
+
+
+rule "oneCarPerClient"
+	when
+		res : Reservation( processed == false )
+		cli : Client( name == res.client, reservation != null )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( reservation.client == res.client, day < res.beginDay )
+	then
+		System.out.println("Klient nie może wynająć jednocześnie kilku samochodów");
+		System.out.println("Rezerwacja " + cli.name + " anulowana");
+		delete(res);
+end
+
+rule "noCars1"
+	when
+		res : Reservation( processed == false, category == "A" )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		//not Return( processed == false, day < res.beginDay )
+		not Car( avaliable == true )
+	then
+		System.out.println("Brak samochodu dla " + res.client + " rezerwacja anulowana");
+		delete(res);
+end
+
+rule "noCars2"
+	when
+		res : Reservation( processed == false, category == "B" )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		//not Return( processed == false, day < res.beginDay )
+		not Car( category == "B", avaliable == true )
+		not Car( category == "D", avaliable == true )
+	then
+		System.out.println("Brak samochodu dla " + res.client + " rezerwacja anulowana");
+		delete(res);
+end
+
+rule "noCars3"
+	when
+		res : Reservation( processed == false, category == "D" )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		//not Return( processed == false, day < res.beginDay )
+		not Car( category == "D", avaliable == true )
+	then
+		System.out.println("Brak samochodu dla " + res.client + " rezerwacja anulowana");
+		delete(res);
+end
+
+rule "emptyReturn"
+	when
+		ret : Return( reservation != null )
+		not Reservation( category == ret.reservation.category, client == ret.reservation.client,
+							beginDay == ret.reservation.beginDay, endDay == ret.reservation.endDay )
+	then
+		System.out.println("Pusty zwrot usunięty");
+		delete(ret);
+end
+
+rule "process1"
+	when
+		res : Reservation( processed == false, catName : category, cliName : client, daysCount <= 3 )
+		cat : Category( name == catName );
+		cli : Client( name == cliName, reservation == null )
+		car : Car( category == catName , avaliable == true )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price1;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process2"
+	when
+		res : Reservation( processed == false, catName : category == "A", cliName : client, daysCount <= 3 )
+		cat : Category( name == catName);
+		cli : Client( name == cliName, reservation == null )
+		not Car( category == "A", avaliable == true )
+		car : Car( category == "B", avaliable == true)
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price1;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process3"
+	when
+		res : Reservation( processed == false, catName : category == "A", cliName : client, daysCount <= 3 )
+		cat : Category( name == catName);
+		cli : Client( name == cliName, reservation == null )
+		not Car( category == "A", avaliable == true )
+		not Car( category == "B", avaliable == true )
+		car : Car( category == "D", avaliable == true)
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price1;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process4"
+	when
+		res : Reservation( processed == false, catName : category == "B", cliName : client, daysCount <= 3 )
+		cat : Category( name == catName);
+		cli : Client( name == cliName, reservation == null )
+		not Car( category == "B", avaliable == true )
+		car : Car( category == "D", avaliable == true)
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price1;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process5"
+	when
+		res : Reservation( processed == false, catName : category, cliName : client, daysCount > 3 )
+		cat : Category( name == catName );
+		cli : Client( name == cliName, reservation == null )
+		car : Car( category == catName , avaliable == true )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price2;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process6"
+	when
+		res : Reservation( processed == false, catName : category == "A", cliName : client, daysCount > 3 )
+		cat : Category( name == catName);
+		cli : Client( name == cliName, reservation == null )
+		not Car( category == "A", avaliable == true )
+		car : Car( category == "B", avaliable == true)
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price2;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process7"
+	when
+		res : Reservation( processed == false, catName : category == "A", cliName : client, daysCount > 3 )
+		cat : Category( name == catName);
+		cli : Client( name == cliName, reservation == null )
+		not Car( category == "A", avaliable == true )
+		not Car( category == "B", avaliable == true )
+		car : Car( category == "D", avaliable == true)
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price2;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "process8"
+	when
+		res : Reservation( processed == false, catName : category == "B", cliName : client, daysCount > 3 )
+		cat : Category( name == catName);
+		cli : Client( name == cliName, reservation == null )
+		not Car( category == "B", avaliable == true )
+		car : Car( category == "D", avaliable == true)
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		res.processed = true;
+		res.car = car;
+		car.avaliable = false;
+		
+		System.out.println("Klientowi " + cli.name + " wypożyczono " + car.name);
+		float pay = res.daysCount * cat.price2;
+		pay += cat.priceAdd * Math.max(0,res.seat+res.rack-cli.loyalty);
+		System.out.println("SUMA wypożyczenie: " + pay);
+		res.payed = pay;
+		cli.reservation = res;
+		
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "return1"
+	when
+		ret : Return( processed == false, resR : reservation )
+		res : Reservation( processed == true, daysCount <= 3 )
+		eval( resR == res )
+		car : Car( name == res.car.name )
+		eval( car == res.car )
+		cat : Category( name == ret.reservation.category )
+		cli : Client( reservation == ret.reservation )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		ret.processed = true;
+		car.avaliable = true;
+		
+		float pay = ret.delay * cat.price1 * 3;
+		pay += ret.kms * 1.0;
+		pay += ret.documents * 500;
+		pay += ret.hubcap * 20;
+		ret.payed = pay;
+		System.out.println(cli.name + " zwrócił " + ret.reservation.car.name);
+		System.out.println("SUMA oddania: " + pay);
+		System.out.println("SUMA całkowita: " + (ret.reservation.payed+pay));
+		
+		res.car = null;
+		cli.reservation = null;
+		
+		update(ret);
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "return2"
+	when
+		ret : Return( processed == false, resR : reservation )
+		res : Reservation( processed == true, daysCount > 3 )
+		eval( resR == res )
+		car : Car( name == res.car.name )
+		eval( car == res.car )
+		cat : Category( name == ret.reservation.category )
+		cli : Client( reservation == ret.reservation )
+		not Reservation( processed == false, beginDay < res.beginDay )
+		not Return( processed == false, day < res.beginDay )
+	then
+		ret.processed = true;
+		car.avaliable = true;
+		
+		float pay = ret.delay * cat.price2 * 3;
+		pay += ret.kms * 0.5;
+		pay += ret.documents * 500;
+		pay += ret.hubcap * 20;
+		ret.payed = pay;
+		System.out.println(cli.name + " zwrócił " + ret.reservation.car.name);
+		System.out.println("SUMA oddania: " + pay);
+		System.out.println("SUMA całkowita: " + (ret.reservation.payed+pay));
+		
+		res.car = null;
+		cli.reservation = null;
+		
+		update(ret);
+		update(res);
+		update(cli);
+		update(car);
+end
+
+rule "noSuchClient"
+	when
+		res : Reservation( client != null)
+		not Client( name == res.client )
+	then
+		System.out.println("Wadliwa rezerwacja - brak klienta : " + res.client);
+		delete(res);
+end
+
+rule "noSuchCategory"
+	when
+		res : Reservation( category != null)
+		not Category( name == res.category )
+	then
+		System.out.println("Wadliwa rezerwacja - brak kategorii : " + res.category);
+		delete(res);
+end
+
+rule "ClientDuplicated"
+	when
+		cli : Client( name != null)
+		cli1 : Client( name == cli.name )
+		eval( cli != cli1 )
+	then
+		System.out.println("Duplikat klienta : " + cli.name);
+		delete(cli);
+end
+
+rule "CategoryDuplicated"
+	when
+		cat : Category( name != null)
+		cat1 : Category( name == cat.name )
+		eval( cat != cat1 )
+	then
+		System.out.println("Duplikat kategorii : " + cat.name);
+		delete(cat);
+end
+
+rule "CarDuplicated"
+	when
+		car : Car( name != null)
+		car1 : Car( name == car.name )
+		eval( car != car1 )
+	then
+		System.out.println("Duplikat kategorii : " + car.name);
+		delete(car);
+end
