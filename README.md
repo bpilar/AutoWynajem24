@@ -1,1 +1,1 @@
-Bartosz Pilarczyk
+Just some Drools rule system.
